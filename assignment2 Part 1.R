@@ -23,9 +23,16 @@ likelihood <- function(param){
   b = param[2]
   #let sd have the value of the 3rd element of param
   sd = param[3]
-  #predicted value equals a * x + b
+  #predicted value equals a * x + b.
+  #pred is a vector, and the nth element in this vector equals 
+  #a times the nth element of vector x plus b
   pred = a*x + b
+  #calculates the probability density of y
+  #where y is log-normally distributed, mean is the estimated y
+  #standard deviation is sd
   singlelikelihoods = dnorm(y, mean = pred, sd = sd, log = T)
+  #calculates the cumulative distribution y 
+  # i.e., P()
   sumll = sum(singlelikelihoods)
   return(sumll)   
 }
