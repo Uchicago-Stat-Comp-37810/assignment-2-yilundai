@@ -31,6 +31,24 @@ chain = run_metropolis_MCMC(startvalue, 10000)
 burnIn = 5000
 acceptance = 1-mean(duplicated(chain[-(1:burnIn),]))
 
+######## Compare Outputs ################
+compare_outputs<- function (iterations) {
+  burnIn <- 0.5 * iterations
+  for(i in 1:10){
+    startvalue = c(runif(1, 0, 10),runif(1, 0, 5),runif(1, 0, 20))
+    chain <- run_metropolis_MCMC(startvalue, iterations)
+    a <- chain[-(1:burnIn),1]
+    mean_a <- mean(a)
+    sd_a <- sd(a)
+    print(c("mean(a) = ", mean_a))
+    print(c("sd(a) = ", sd_a))
+  }
+}
+
+compare_outputs(1000)
+compare_outputs(10000)
+compare_outputs(100000)
+
 ### Summary: #######################
 
 

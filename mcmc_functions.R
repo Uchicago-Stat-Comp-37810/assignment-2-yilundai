@@ -37,7 +37,6 @@ run_metropolis_MCMC <- function(startvalue, iterations){
   chain[1,] = startvalue
   for (i in 1:iterations){
     proposal = proposalfunction(chain[i,])
-    
     probab = exp(posterior(proposal) - posterior(chain[i,]))
     if (runif(1) < probab){
       chain[i+1,] = proposal
@@ -47,6 +46,7 @@ run_metropolis_MCMC <- function(startvalue, iterations){
   }
   return(chain)
 }
+
 
 ### Summary: #######################
 
